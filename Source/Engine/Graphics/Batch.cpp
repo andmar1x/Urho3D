@@ -254,7 +254,10 @@ void Batch::Prepare(View* view, bool setModelTransform) const
                 12 * numWorldTransforms_);
         }
         else
+        {
             graphics->SetShaderParameter(VSP_MODEL, *worldTransform_);
+            graphics->SetShaderParameter(VSP_MODELINV, (*worldTransform_).Inverse());
+        }
         
         // Set the orientation for billboards, either from the object itself or from the camera
         if (geometryType_ == GEOM_BILLBOARD)
